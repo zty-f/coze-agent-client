@@ -106,6 +106,9 @@ public class CozeAgentClient extends BaseLlm<CozeAgentConfig> {
 
         JSONObject jsonObject = JSON.parseObject(response);
         String code = jsonObject.getString("code");
+        if (!Objects.equals(code, "0")){
+            throw new RuntimeException("Coze智能体对话失败，code: " + code + ", msg: " + jsonObject.getString("msg"));
+        }
         String error = jsonObject.getString("msg");
         String curConversationId = JSON.parseObject(jsonObject.getString("data")).getString("conversation_id");
 
