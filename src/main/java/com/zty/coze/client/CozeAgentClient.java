@@ -143,7 +143,6 @@ public class CozeAgentClient extends BaseLlm<CozeAgentConfig> {
                     break;
                 }
                 Thread.sleep(10000);
-                System.out.println(attemptCount);
             } catch (Exception e) {
                 listener.onFailure(cozeChat, e.getCause());
                 listener.onStop(cozeChat);

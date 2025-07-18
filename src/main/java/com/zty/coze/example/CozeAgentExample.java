@@ -46,7 +46,7 @@ public class CozeAgentExample {
         CozeAgentManager manager = CozeAgentManager.create("openKey");
         
         // 获取智能体客户端（一个机器人对应一个客户端）
-        String robotId = "7527642214542049306";
+        String robotId = "1";
         CozeAgentClient client = manager.getClient(robotId);
         
         // 第一次对话（不指定会话ID，系统会自动创建）
