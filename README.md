@@ -24,7 +24,7 @@
 
 ```xml
 <dependency>
-    <groupId>com.zty</groupId>
+    <groupId>io.github.zty-f</groupId>
     <artifactId>coze-agent-client</artifactId>
     <version>1.0.0</version>
 </dependency>
