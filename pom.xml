@@ -11,6 +11,32 @@
 
     <name>Coze Agent Client</name>
     <description>批量生成Coze智能体客户端的独立模块</description>
+    <url>https://github.com/zty-f/coze-agent-client.git</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>zruler</name>
+            <email>zruler@163.com</email>
+            <url>https://github.com/zty-f/coze-agent-client.git</url>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <!-- 项目URL -->
+        <url>https://github.com/zty-f/coze-agent-client</url>
+        <!-- 项目URL.git -->
+        <connection>https://github.com/zty-f/coze-agent-client.git</connection>
+        <!-- 项目URL.git -->
+        <developerConnection>scm:git:https://github.com/zty-f/coze-agent-client.git</developerConnection>
+    </scm>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -20,6 +46,8 @@
         <fastjson.version>1.2.83</fastjson.version>
         <okhttp.version>4.12.0</okhttp.version>
         <slf4j.version>1.7.36</slf4j.version>
+        <!-- 服务id 也就是setting.xml中的servers.server.id -->
+        <serverId>central</serverId>
     </properties>
 
     <dependencies>
@@ -78,6 +106,37 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <!-- Gpg Signature -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 新方式的配置，将组件部署到OSSRH并将其发布到Central Repository-->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.4.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <tokenAuth>true</tokenAuth>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>${serverId}</id>
+            <url>https://central.sonatype.com/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project> 
