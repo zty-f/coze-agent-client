@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zty</groupId>
+    <groupId>io.github.zty-f</groupId>
     <artifactId>coze-agent-client</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -106,6 +106,36 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <!-- 源码插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Javadoc插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
             <!-- Gpg Signature -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -120,6 +150,7 @@
                     </execution>
                 </executions>
             </plugin>
+            
             <!-- 新方式的配置，将组件部署到OSSRH并将其发布到Central Repository-->
             <plugin>
                 <groupId>org.sonatype.central</groupId>
@@ -135,8 +166,12 @@
     </build>
     <distributionManagement>
         <snapshotRepository>
-            <id>${serverId}</id>
+            <id>central</id>
             <url>https://central.sonatype.com/</url>
         </snapshotRepository>
+        <repository>
+            <id>central</id>
+            <url>https://central.sonatype.com/</url>
+        </repository>
     </distributionManagement>
 </project> 
